@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject); //this gameobject will not be destroyed when a new scene is loaded
         NewGame();
-        LoadLevel(1); // 1 and not 0  cuz the scene 0 in our build settings is preload 
+        LoadLevel(1); // level = 0 is the preload scene / level = 1 is the first level1 scene
     }
     private void LoadLevel(int index){
         level = index;

@@ -13,7 +13,7 @@ public class Barrel : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == 7){
-            rigidB.AddForce(other.transform.right * speed,ForceMode2D.Impulse); // addforce(vector) we are adding force in that vector's direction
+            rigidB.AddForce(other.transform.right * speed,ForceMode2D.Impulse); //we are adding force in that vector's direction
         }
     }
 }
