@@ -10,12 +10,13 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject); //this gameobject will not be destroyed when a new scene is loaded
         NewGame();
-        LoadLevel(1); // level = 0 is the preload scene / level = 1 is the first level1 scene
+        LoadLevel(1); // level = 0 is the preload scene / level = 1 is the first level scene
     }
     private void LoadLevel(int index){
         level = index;
         Camera camera = Camera.main;
         if (camera != null){
+            // if a camera is not null we set an empty scene
             camera.cullingMask = 0;
         }
         Invoke(nameof(LoadScene),1f);

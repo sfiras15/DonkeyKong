@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject prefab;
-    public Vector2 direction;
     public float minTime = 2f;
     public float maxTime = 4f;
     // Start is called before the first frame update

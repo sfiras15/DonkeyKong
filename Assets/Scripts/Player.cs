@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool climbing = false;
     public new Collider2D collider;
+    // The array will be filled with the objects that the player character has collided with.
     private Collider2D[] results;
     private int x ;
 
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     private void OnEnable(){
         InvokeRepeating(nameof(Anim),1f/12f,1f/12f);
     }
+    // Animating mario through all of his states
     private void Anim(){
         if (climbing){
             spriteRenderer.sprite = climbAnimation;
@@ -81,19 +83,23 @@ public class Player : MonoBehaviour
     {
         isGrounded = false;
         climbing = false;
-        Vector2 size = collider.bounds.size; // to extract the size of the box that will collide 
+        Vector2 size = collider.bounds.size;
         size.y += 0.2f;
         size.x /= 2f;
 
-        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0f, results);// Make a small box around the player that will detect how many collision will be made
+        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0f, results);
         for (int i = 0; i < amount; i++)
         {
             GameObject hit = results[i].gameObject;
+            // If mario collides with a platform
             if (hit.layer == 7)
             {
+                // true if the platform is under him // false if it's above him
                 isGrounded = hit.transform.position.y < (transform.position.y - 0.5f);
+                // ignore the collision if the platform is above him so he doesn't hit his head
                 Physics2D.IgnoreCollision(collider, results[i], !isGrounded);
             }
+            //// If mario collides with stairs
             else if (hit.layer == 6)
             {
                 climbing = true;
